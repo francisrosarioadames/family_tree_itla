@@ -2,20 +2,24 @@
  * Tree.h
  *
  *  Created on: May 28, 2016
- *      Author: raydelto
+ *      Author: raydelto y francis
  */
 
-#ifndef TREE_H_
-#define TREE_H_
-
-namespace ITLA {
-
-class Tree {
+#include "Menu.h"
+class Arbol
+{
+private:
+	
+	Menu* _raiz;
+	Menu* a;
+	Menu* b;
+	
+	int opcion, chijo;
+	string raiz,  nombre[100];
 public:
-	Tree();
-	virtual ~Tree();
+	void Menu();
+	void recorrer(Menu* Menu);
+	Arbol(Menu* raiz);
+	virtual ~Arbol(void);
 };
 
-} /* namespace ITLA */
-
-#endif /* TREE_H_ */

@@ -2,20 +2,120 @@
  * Tree.cpp
  *
  *  Created on: May 28, 2016
- *      Author: raydelto
+ *      Author: raydelto y francis
  */
 
 #include "Tree.h"
+#include <stdlib.h>
 
-namespace ITLA {
 
-Tree::Tree() {
-	// TODO Auto-generated constructor stub
+Tree::Tree(Menu* raiz)
+{
+	this->_raiz = raiz;
+}
+
+void Tree::Menu()
+{
+	cout << "Arbol Genealogico" << endl;
+	cout << "1- Crear arbol genealogico" << endl;
+	cout << "2- Desplegar árbol genealógico" << endl;
+	cout << "3- Salir" << endl;
+	cout <<endl << "Elija una opción => ";
+	cin >> opcion;
+	int j = 1;
+	switch(opcion)
+	{
+		case 1:
+			cout << " Crear arbol" <<endl;
+			cout << "Ingrese el nombre de la persona: ";
+			cin >> raiz;
+			 a = new Nodo(raiz);
+			 cout << "Digite la cantidad de hijos de "<<raiz <<": ";
+			 cin >> chijo;
+
+			 if(chijo > 0)
+			 {
+
+				 for(int i = 1; i <= chijo; i++)
+				 {
+					 string nombrehijo;
+					 cout << "Digite el nombre del hijo # "<<i <<" de " << raiz<< " : ";
+					 cin >> nombrehijo;
+					 b = new Nodo(nombrehijo);
+					 a->agregarhijo(b);
+					 nombre[i] = nombrehijo;
+
+				 }
+
+					 int c, k = 1;
+
+					 for (int j = 1; j <= chijo; j++)
+					 {
+
+						 cout << "Digite la cantidad de hijos de "+nombre[j]+": ";
+						 cin >> c;
+
+						 if(c > 0){
+
+							do{
+
+									string nombrehijo;
+									cout << "Digite el nombre del hijo # "<<k <<" de " << nombre[k]<< ": ";
+									 cin >> nombrehijo;
+									Nodo* v = new Nodo(nombrehijo);
+									 b->agregarhijo(v);
+
+									k++;
+							}while (k <= c);
+						 }
+
+						}
+
+
+
+
+
+				    }
+
+
+			 system("cls");
+			  Menu();
+			break;
+
+		case 2:
+			system("cls");
+			Arbol* arbl = new Arbol(a);
+			arbl->recorrer(a);
+			int b;
+			cout <<endl<< "1 - Salir => ";
+			cin >> b;
+
+			if(b == 1){
+
+			  system("cls");
+			  Menu();
+			}
+			break;
+
+	}
 
 }
 
-Tree::~Tree() {
-	// TODO Auto-generated destructor stub
-}
+void Tree::recorrer(Nodo* nodo)
+{
+	cout <<  nodo->getNombre() << endl <<endl;
 
-} /* namespace ITLA */
+	if(nodo->getNumeroHijo() > 0)
+	{
+		Nodo* n = nodo->getHijo();
+
+		while(n != NULL)
+		{
+			recorrer(n);
+			n = n->getSiguiente();
+		}
+	}
+}
+Tree::~Tree(void)
+{
+}

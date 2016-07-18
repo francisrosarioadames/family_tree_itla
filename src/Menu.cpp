@@ -2,20 +2,53 @@
  * Menu.cpp
  *
  *  Created on: May 28, 2016
- *      Author: raydelto
+ *      Author: raydelto y francis
  */
 
 #include "Menu.h"
 
-namespace ITLA {
+#include "Menu.h";
 
-Menu::Menu() {
-	// TODO Auto-generated constructor stub
+
+Nodo::Nodo(string nombre)
+{
+	this->nombre = nombre;
+	siguiente = NULL;
+	primerHijo = NULL;
+	ultimoHijo = NULL;
+	hijo = 0;
+}
+
+void Nodo::agregarhijo(Nodo* hijo)
+{
+ 	this->hijo++;
+	if(primerHijo == NULL)
+	{
+		primerHijo = hijo;
+		ultimoHijo = hijo;
+	}else
+	{
+		ultimoHijo->siguiente = hijo;
+		ultimoHijo = hijo;
+	}
 
 }
 
-Menu::~Menu() {
-	// TODO Auto-generated destructor stub
+
+
+int Nodo::getNumeroHijo()
+{
+	return this->hijo;
 }
 
-} /* namespace ITLA */
+
+Nodo* Nodo::getHijo()
+{
+	return primerHijo;
+}
+
+Nodo::~Nodo()
+{
+
+}
+		
